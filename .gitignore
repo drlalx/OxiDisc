@@ -1,0 +1,49 @@
+# Rust build output
+target/
+test_data/
+oxidisc_gui_mockup.jpg
+public_repo/
+
+**/*.rs.bk
+
+# Local package build scratch and caches
+./.flatpak-builder/
+./debian/
+./parts/
+./prime/
+./stage/
+./overlay/
+./snap/.snapcraft/
+./.snapcraft/
+*build*/
+cmake-build-*/
+*.*swp*
+*.bak
+*.AppImage*
+*parent-build*/
+*CMakeFiles*/
+
+# Build cache markers and debug/intermediate files
+# CACHEDIR.TAG
+# *.d
+# *.debug
+# *.profraw
+# *.profdata
+# Logs
+# *.log
+
+# Local developer/editor state
+/.cache/
+/.vscode/
+/.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.bash_history
+
+# Local notes/status markers
+/note.txt
+/succesful-build-with-codex
+/CD.Rip_my/
+/Music/

@@ -1,0 +1,33 @@
+Source: oxidisc
+Section: sound
+Priority: optional
+Maintainer: Alexander Drichel <adrichel@users.noreply.github.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cargo,
+ rustc,
+ pkg-config,
+ libclang-dev,
+ libdiscid-dev,
+ desktop-file-utils,
+ appstream
+Standards-Version: 4.7.0
+Homepage: https://github.com/dral/OxiDisc
+Rules-Requires-Root: no
+
+Package: oxidisc
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ cd-discid,
+ cdparanoia,
+ eject,
+ flac,
+ lame,
+ libdiscid0,
+ opus-tools,
+ vorbis-tools
+Description: Modern, fast audio CD ripper in Rust with egui GUI and Ratatui TUI
+ OxiDisc detects audio CDs, looks up metadata via MusicBrainz, GnuDB, and
+ AcoustID, and extracts selected tracks to FLAC, MP3, WAV, Ogg Vorbis, or Opus.

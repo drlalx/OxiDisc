@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OxiDisc
+Comment=Modern and fast audio CD ripper in Rust
+Exec=oxidisc
+Icon=oxidisc
+Categories=AudioVideo;Audio;
+Terminal=false
+StartupNotify=true
+StartupWMClass=oxidisc

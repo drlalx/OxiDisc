@@ -1,0 +1,10 @@
+encoder = "ogg"
+bitrate = "320"
+quality = "8"
+device = "/dev/sr0"
+ui_backend = "tui"
+language = "auto"
+metadata_source = "auto"
+album_art_size_preference = "large"
+album_art_download_behavior = "save-with-rip"
+auto_create_output_dir = true

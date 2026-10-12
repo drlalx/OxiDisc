@@ -1,0 +1,17 @@
+oxidisc (2.0.0-1) noble; urgency=medium
+
+  * Major release 2.0.0.
+  * Rebranded to OxiDisc.
+  * Added Ratatui TUI and modern egui GUI.
+  * Added pure-Rust native Windows CDDA ripper and DiscID support.
+  * Added Opus audio output format support.
+  * Added AcoustID acoustic audio fingerprinting via Chromaprint.
+  * Added GnuDB (FreeDB) metadata provider and auto-cascade.
+
+ -- Alexander Drichel <adrichel@users.noreply.github.com>  Sun, 30 Aug 2026 21:00:00 +0200
+
+oxidisc (1.1.0-1) noble; urgency=medium
+
+  * Initial Ubuntu source packaging recipe.
+
+ -- Alexander Drichel <adrichel@users.noreply.github.com>  Fri, 08 May 2026 00:00:00 -0500

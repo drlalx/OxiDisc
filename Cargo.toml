@@ -1,0 +1,68 @@
+[package]
+name = "oxidisc"
+version = "2.0.0"
+edition = "2024"
+authors = ["Alexander Drichel"]
+license = "MIT"
+description = "OxiDisc: Modern, fast audio CD ripper in Rust with egui GUI and Ratatui TUI."
+readme = "README.md"
+homepage = "https://github.com/drlalx/OxiDisc"
+repository = "https://github.com/drlalx/OxiDisc"
+keywords = ["audio", "cd", "ripper", "music"]
+categories = ["multimedia::audio"]
+
+[features]
+default = ["egui-ui", "tui"]
+egui-ui = ["dep:eframe", "dep:egui", "dep:image"]
+tui = ["dep:ratatui", "dep:crossterm"]
+
+[package.metadata.deb]
+section = "sound"
+maintainer = "Alexander Drichel"
+copyright = "Copyright (c) 2026 Alexander Drichel"
+depends = "$auto, cdparanoia, cd-discid, eject, flac, lame, vorbis-tools, opus-tools, libdiscid0, fonts-noto-cjk | fonts-droid-fallback"
+assets = [
+    ["target/release/oxidisc", "usr/bin/oxidisc", "755"],
+    ["resources/images/oxidisc.png", "usr/share/icons/hicolor/256x256/apps/oxidisc.png", "644"],
+    ["resources/oxidisc.desktop", "usr/share/applications/oxidisc.desktop", "644"],
+    ["resources/metainfo/io.github.dral.oxidisc.metainfo.xml", "usr/share/metainfo/io.github.dral.oxidisc.metainfo.xml", "644"],
+]
+
+[dependencies]
+eframe = { version = "0.36", optional = true }
+egui = { version = "0.36", optional = true }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "webp"], optional = true }
+ratatui = { version = "0.30", default-features = false, features = ["crossterm"], optional = true }
+crossterm = { version = "0.29", optional = true }
+serde = { version = "1.0", features = ["derive"] }
+toml = "1.1"
+dirs = "7.0"
+sha1 = "0.11"
+ureq = { version = "3.4", features = ["json"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+chromaprint-next = "0.1"
+flacenc = "0.5"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Ioctl",
+    "Win32_Media_Audio",
+    "Win32_System_IO",
+    "Win32_System_SystemServices",
+] }
+
+[lints.clippy]
+panic = "deny"
+unwrap_used = "deny"
+expect_used = "deny"
+panic_in_result_fn = "deny"
+unreachable = "deny"
+todo = "deny"
+unimplemented = "deny"
+

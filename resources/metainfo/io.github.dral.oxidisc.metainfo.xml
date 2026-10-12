@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.dral.oxidisc</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>OxiDisc</name>
+  <developer id="io.github.dral">
+    <name>Alexander Drichel</name>
+  </developer>
+  <summary>Extract audio CDs to FLAC, MP3, WAV, Ogg Vorbis, or Opus</summary>
+  <description>
+    <p>
+      OxiDisc detects audio CDs, looks up album metadata, and extracts selected tracks to FLAC, MP3, WAV, Ogg Vorbis, or Opus files.
+    </p>
+    <p>
+      It supports multi-provider metadata cascade via MusicBrainz (with Cover Art Archive integration), GnuDB (FreeDB), and AcoustID acoustic audio fingerprinting, alongside dual frontends (pure-Rust egui GUI and Ratatui TUI).
+    </p>
+  </description>
+  <launchable type="desktop-id">oxidisc.desktop</launchable>
+  <provides>
+    <binary>oxidisc</binary>
+  </provides>
+  <categories>
+    <category>Audio</category>
+    <category>AudioVideo</category>
+  </categories>
+  <url type="homepage">https://github.com/drlalx/OxiDisc</url>
+  <url type="bugtracker">https://github.com/drlalx/OxiDisc/issues</url>
+  <content_rating type="oars-1.1" />
+  <releases>
+    <release version="2.0.0" date="2026-08-30">
+      <description>
+        <p>OxiDisc 2.0.0 major release:</p>
+        <ul>
+          <li>Added pure-Rust native Windows CDDA extraction and DiscID calculation without external tools.</li>
+          <li>Added modern egui GUI and full Ratatui TUI (Terminal User Interface).</li>
+          <li>Added Opus audio encoding support.</li>
+          <li>Added AcoustID acoustic audio fingerprinting recognition via Chromaprint.</li>
+          <li>Added GnuDB (FreeDB) metadata lookup and multi-provider automatic cascade.</li>
+          <li>Migrated codebase to Rust Edition 2024.</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

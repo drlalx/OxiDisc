@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+export CARGO_HOME := $(CURDIR)/debian/cargo-home
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cargo build --release --locked --features "egui-ui tui"
+
+override_dh_auto_test:
+	cargo test --locked --features "egui-ui tui"
+	desktop-file-validate resources/oxidisc.desktop
+	appstreamcli validate --pedantic resources/metainfo/io.github.dral.oxidisc.metainfo.xml
+
+override_dh_auto_install:
+	install -Dm0755 target/release/oxidisc debian/oxidisc/usr/bin/oxidisc
+	install -Dm0644 resources/oxidisc.desktop debian/oxidisc/usr/share/applications/oxidisc.desktop
+	install -Dm0644 resources/images/oxidisc.png debian/oxidisc/usr/share/icons/hicolor/256x256/apps/io.github.dral.oxidisc.png
+	install -Dm0644 resources/metainfo/io.github.dral.oxidisc.metainfo.xml debian/oxidisc/usr/share/metainfo/io.github.dral.oxidisc.metainfo.xml

@@ -1,0 +1,114 @@
+name: oxidisc
+base: core24
+version: '2.0.0'
+title: OxiDisc
+summary: Audio CD music ripper
+description: |
+  OxiDisc detects audio CDs, looks up album metadata, and extracts
+  selected tracks to FLAC, MP3, WAV, Ogg Vorbis, or Opus files.
+license: MIT
+contact: https://github.com/dral/OxiDisc/issues
+issues: https://github.com/dral/OxiDisc/issues
+source-code: https://github.com/dral/OxiDisc
+website: https://github.com/dral/OxiDisc
+
+
+grade: stable
+confinement: strict
+
+apps:
+  oxidisc:
+    command: usr/bin/oxidisc
+    desktop: usr/share/applications/oxidisc.desktop
+    environment:
+      GDK_BACKEND: x11
+      WAYLAND_DISPLAY: ""
+    plugs:
+      - desktop
+      - desktop-legacy
+      - home
+      - mount-observe
+      - network
+      - opengl
+      - optical-drive
+      - removable-media
+      - wayland
+      - x11
+    slots:
+      - oxidisc-dbus
+
+slots:
+  oxidisc-dbus:
+    interface: dbus
+    bus: session
+    name: io.github.dral.oxidisc
+
+parts:
+  oxidisc:
+    plugin: rust
+    source: .
+    build-packages:
+      - libcairo2-dev
+      - libadwaita-1-dev
+      - libatk-bridge2.0-dev
+      - libclang-dev
+      - libdiscid-dev
+      - libepoxy-dev
+      - libgdk-pixbuf-2.0-dev
+      - libglib2.0-dev
+      - libgraphene-1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgstreamer1.0-dev
+      - libgtk-4-bin
+      - libgtk-4-common
+      - libgtk-4-dev
+      - libpango1.0-dev
+      - libvulkan-dev
+      - libwayland-dev
+      - libxkbcommon-dev
+      - pkg-config
+    stage-packages:
+      - adwaita-icon-theme
+      - cd-discid
+      - cdparanoia
+      - eject
+      - flac
+      - fontconfig
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-plugins-ugly
+      - hicolor-icon-theme
+      - lame
+      - libadwaita-1-0
+      - libatk-bridge2.0-0
+      - libcairo2
+      - libdiscid0
+      - libepoxy0
+      - libgdk-pixbuf-2.0-0
+      - libglib2.0-0t64
+      - libglib2.0-0
+      - libglib2.0-dev
+      - libgraphene-1.0-0
+      - libgstreamer-plugins-base1.0-0
+      - libgstreamer1.0-0
+      - libgtk-4-1
+      - libgtk-4-bin
+      - libgtk-4-common
+      - libpango-1.0-0
+      - libpangocairo-1.0-0
+      - libvulkan1
+      - libwayland-client0
+      - libwayland-cursor0
+      - libwayland-egl1
+      - libxkbcommon0
+      - libxkbcommon-x11-0
+      - mesa-vulkan-drivers
+      - shared-mime-info
+      - vorbis-tools
+    override-build: |
+      cargo build --release --locked --features "egui-ui tui"
+      install -Dm755 target/release/oxidisc "$CRAFT_PART_INSTALL/usr/bin/oxidisc"
+      install -Dm644 resources/oxidisc.desktop "$CRAFT_PART_INSTALL/usr/share/applications/oxidisc.desktop"
+      install -Dm644 resources/images/oxidisc.png "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/io.github.dral.oxidisc.png"
+      install -Dm644 resources/images/oxidisc.png "$CRAFT_PART_INSTALL/usr/share/pixmaps/io.github.dral.oxidisc.png"
+      install -Dm644 resources/metainfo/io.github.dral.oxidisc.metainfo.xml "$CRAFT_PART_INSTALL/usr/share/metainfo/io.github.dral.oxidisc.metainfo.xml"
