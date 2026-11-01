@@ -118,8 +118,8 @@ fn query_osv_vulnerabilities(
         .collect();
 
     let batch = OsvQueryBatch { queries };
-    let json_body = serde_json::to_string(&batch)
-        .map_err(|e| format!("Failed to serialize OSV query: {e}"))?;
+    let json_body =
+        serde_json::to_string(&batch).map_err(|e| format!("Failed to serialize OSV query: {e}"))?;
 
     let agent = ureq::Agent::config_builder()
         .timeout_global(Some(Duration::from_secs(15)))
@@ -137,8 +137,8 @@ fn query_osv_vulnerabilities(
         .read_to_string()
         .map_err(|e| format!("Failed to read OSV body: {e}"))?;
 
-    let batch_resp: OsvBatchResponse = serde_json::from_str(&body)
-        .map_err(|e| format!("Failed to parse OSV response: {e}"))?;
+    let batch_resp: OsvBatchResponse =
+        serde_json::from_str(&body).map_err(|e| format!("Failed to parse OSV response: {e}"))?;
 
     let mut found = Vec::new();
     for (idx, result) in batch_resp.results.into_iter().enumerate() {

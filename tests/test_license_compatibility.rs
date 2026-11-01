@@ -27,7 +27,9 @@ const ALLOWED_LICENSES: &[&str] = &[
 /// Checks if an individual license identifier is in the allowed list.
 fn is_license_allowed(lic: &str) -> bool {
     let trimmed = lic.trim();
-    ALLOWED_LICENSES.iter().any(|&allowed| allowed.eq_ignore_ascii_case(trimmed))
+    ALLOWED_LICENSES
+        .iter()
+        .any(|&allowed| allowed.eq_ignore_ascii_case(trimmed))
 }
 
 /// Token in a simplified SPDX expression.
@@ -83,7 +85,8 @@ fn tokenize_spdx(input: &str) -> Vec<Token<'_>> {
                     // Handle "WITH LLVM-exception"
                     if let Some(Token::License(prev)) = tokens.pop() {
                         let combined_end = chars.peek().map(|&(idx, _)| idx).unwrap_or(input.len());
-                        let full_with = &input[prev.as_ptr() as usize - input.as_ptr() as usize..combined_end];
+                        let full_with =
+                            &input[prev.as_ptr() as usize - input.as_ptr() as usize..combined_end];
                         tokens.push(Token::License(full_with.trim()));
                     } else {
                         tokens.push(Token::License(word));
@@ -207,8 +210,12 @@ fn test_license_compatibility_evaluator_unit() {
     assert!(!is_license_compatible_with_mit("MIT AND GPL-3.0-only"));
 
     // Complex nested expressions
-    assert!(is_license_compatible_with_mit("(MIT OR Apache-2.0) AND Unicode-3.0"));
-    assert!(is_license_compatible_with_mit("(MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0"));
+    assert!(is_license_compatible_with_mit(
+        "(MIT OR Apache-2.0) AND Unicode-3.0"
+    ));
+    assert!(is_license_compatible_with_mit(
+        "(MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0"
+    ));
 }
 
 #[test]
@@ -218,7 +225,10 @@ fn test_all_dependencies_have_mit_compatible_licenses() {
         .output()
         .expect("cargo metadata execution failed");
 
-    assert!(output.status.success(), "cargo metadata returned failure status");
+    assert!(
+        output.status.success(),
+        "cargo metadata returned failure status"
+    );
 
     let json: serde_json::Value =
         serde_json::from_slice(&output.stdout).expect("Failed to parse cargo metadata JSON");
@@ -243,11 +253,15 @@ fn test_all_dependencies_have_mit_compatible_licenses() {
         match license_opt {
             Some(lic) => {
                 if !is_license_compatible_with_mit(lic) {
-                    violations.push(format!("{name} v{version} has incompatible license: '{lic}'"));
+                    violations.push(format!(
+                        "{name} v{version} has incompatible license: '{lic}'"
+                    ));
                 }
             }
             None => {
-                violations.push(format!("{name} v{version} has NO license specified (unlicensed)"));
+                violations.push(format!(
+                    "{name} v{version} has NO license specified (unlicensed)"
+                ));
             }
         }
     }
