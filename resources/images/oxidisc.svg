@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg1" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#1e222d"/>
+      <stop offset="65%" stop-color="#11131a"/>
+      <stop offset="100%" stop-color="#090a0f"/>
+    </radialGradient>
+
+    <!-- Outer Border Gradient -->
+    <linearGradient id="border1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.75"/>
+      <stop offset="50%" stop-color="#2c3242" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <!-- Disc Base Metallic Gradient -->
+    <linearGradient id="discBase1" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#2b303c"/>
+      <stop offset="35%" stop-color="#191c24"/>
+      <stop offset="50%" stop-color="#343a48"/>
+      <stop offset="65%" stop-color="#161920"/>
+      <stop offset="100%" stop-color="#292e3a"/>
+    </linearGradient>
+
+    <!-- Copper Sheen Cone -->
+    <linearGradient id="copperSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7b47" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#de4c36" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#9e2a1b" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Cyan Reflection Cone -->
+    <linearGradient id="cyanSheen" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.7"/>
+      <stop offset="55%" stop-color="#0077b6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <!-- Soundwave Gradient -->
+    <linearGradient id="waveGrad1" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="45%" stop-color="#ff6b35"/>
+      <stop offset="100%" stop-color="#ffbe0b"/>
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="glow1" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clip Path for Disc -->
+    <clipPath id="discClip1">
+      <circle cx="128" cy="128" r="88"/>
+    </clipPath>
+  </defs>
+
+  <!-- App Icon Squircle Background -->
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="url(#bg1)" stroke="url(#border1)" stroke-width="3"/>
+
+  <!-- Subtle Ambient Glow Behind Disc -->
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#de4c36" stroke-width="2" stroke-opacity="0.2"/>
+
+  <!-- Main Optical Disc -->
+  <g clip-path="url(#discClip1)">
+    <circle cx="128" cy="128" r="88" fill="url(#discBase1)"/>
+
+    <!-- Iridescent Reflection Sectors -->
+    <path d="M128,128 L35,55 A120,120 0 0,1 105,30 Z" fill="url(#copperSheen)"/>
+    <path d="M128,128 L221,201 A120,120 0 0,1 151,226 Z" fill="url(#copperSheen)"/>
+    <path d="M128,128 L195,40 A120,120 0 0,1 226,105 Z" fill="url(#cyanSheen)"/>
+    <path d="M128,128 L61,216 A120,120 0 0,1 30,151 Z" fill="url(#cyanSheen)"/>
+  </g>
+
+  <!-- Outer Metallic Rim -->
+  <circle cx="128" cy="128" r="88" fill="none" stroke="#ff7b47" stroke-width="2.5" stroke-opacity="0.8"/>
+  <circle cx="128" cy="128" r="84" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-opacity="0.2"/>
+
+  <!-- Concentric Optical Grooves -->
+  <circle cx="128" cy="128" r="76" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.14" stroke-dasharray="18 6"/>
+  <circle cx="128" cy="128" r="68" fill="none" stroke="#ff8c61" stroke-width="0.8" stroke-opacity="0.24"/>
+  <circle cx="128" cy="128" r="60" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.12" stroke-dasharray="28 8"/>
+  <circle cx="128" cy="128" r="52" fill="none" stroke="#00f0ff" stroke-width="0.8" stroke-opacity="0.24"/>
+  <circle cx="128" cy="128" r="44" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.15"/>
+
+  <!-- Center Clamping Hub & Spindle Hole -->
+  <circle cx="128" cy="128" r="31" fill="#13161f" stroke="#ff6b35" stroke-width="2" stroke-opacity="0.85"/>
+  <circle cx="128" cy="128" r="23" fill="none" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="4 3"/>
+  <circle cx="128" cy="128" r="14" fill="#090a0f" stroke="#8d99ae" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Laser Pickup Beam (Reading Track) -->
+  <g filter="url(#softGlow1)">
+    <line x1="38" y1="202" x2="94" y2="154" stroke="#00f0ff" stroke-width="3.8" stroke-linecap="round"/>
+    <line x1="38" y1="202" x2="94" y2="154" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
+    <!-- Laser Contact Point -->
+    <circle cx="94" cy="154" r="5.5" fill="#00f0ff"/>
+    <circle cx="94" cy="154" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Controlled Audio Waveform / Equalizer Curve Emerging from Laser Point -->
+  <g filter="url(#glow1)">
+    <path d="M 94 154
+             L 106 154
+             L 114 126
+             L 124 168
+             L 136 96
+             L 148 174
+             L 162 78
+             L 174 158
+             L 186 106
+             L 198 144
+             L 208 122
+             L 220 128"
+          fill="none" stroke="url(#waveGrad1)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Crisp Foreground Highlights on Waveform Peaks -->
+  <circle cx="136" cy="96" r="2.8" fill="#ffffff"/>
+  <circle cx="162" cy="78" r="3.2" fill="#ffbe0b"/>
+  <circle cx="186" cy="106" r="2.8" fill="#ff6b35"/>
+</svg>

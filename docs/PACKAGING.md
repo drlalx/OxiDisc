@@ -1,4 +1,4 @@
-![OxiDisc](../resources/images/oxidisc.png)
+![OxiDisc](../resources/images/oxidisc_banner.svg)
 
 # Packaging Notes
 

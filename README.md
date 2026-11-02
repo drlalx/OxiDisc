@@ -1,6 +1,6 @@
 # 💿 OxiDisc
 
-![OxiDisc](resources/images/oxidisc.png)
+![OxiDisc](resources/images/oxidisc_banner.svg)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Rust-2024%20Edition-orange.svg)](https://www.rust-lang.org/)
