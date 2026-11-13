@@ -1,6 +1,6 @@
 pkgbase = oxidisc
 	pkgdesc = Modern and fast audio CD ripper in Rust with egui GUI and Ratatui TUI
-	pkgver = 2.0.0
+	pkgver = 0.1.0
 	pkgrel = 1
 	url = https://github.com/dral/OxiDisc
 	arch = x86_64
@@ -16,7 +16,7 @@ pkgbase = oxidisc
 	depends = libdiscid
 	depends = opus-tools
 	depends = vorbis-tools
-	source = oxidisc::git+https://github.com/dral/OxiDisc.git#tag=v2.0.0
+	source = oxidisc::git+https://github.com/dral/OxiDisc.git#tag=v0.1.0
 	sha256sums = SKIP
 
 pkgname = oxidisc

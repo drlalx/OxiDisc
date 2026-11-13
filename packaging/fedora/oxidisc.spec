@@ -1,5 +1,5 @@
 Name:           oxidisc
-Version:        2.0.0
+Version:        0.1.0
 Release:        1%{?dist}
 Summary:        Modern and fast audio CD ripper in Rust with egui GUI and Ratatui TUI
 
@@ -54,8 +54,8 @@ install -Dm0644 LICENSE %{buildroot}%{_datadir}/licenses/%{name}/LICENSE
 %{_datadir}/metainfo/io.github.dral.oxidisc.metainfo.xml
 
 %changelog
-* Sun Aug 30 2026 Alexander Drichel <adrichel@users.noreply.github.com> - 2.0.0-1
-- Update to 2.0.0 with Opus support, AcoustID Chromaprint recognition, GnuDB cascade, and Windows support.
+* Fri Nov 13 2026 Alexander Drichel <adrichel@users.noreply.github.com> - 0.1.0-1
+- Release 0.1.0 with Opus support, AcoustID Chromaprint recognition, GnuDB cascade, and Windows support.
 
 * Fri May 08 2026 Alexander Drichel <adrichel@users.noreply.github.com> - 1.1.0-1
 - Initial Fedora/COPR recipe.

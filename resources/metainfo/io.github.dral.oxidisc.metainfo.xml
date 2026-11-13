@@ -28,9 +28,9 @@
   <url type="bugtracker">https://github.com/drlalx/OxiDisc/issues</url>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="2.0.0" date="2026-08-30">
+    <release version="0.1.0" date="2026-11-13">
       <description>
-        <p>OxiDisc 2.0.0 major release:</p>
+        <p>OxiDisc 0.1.0 release:</p>
         <ul>
           <li>Added pure-Rust native Windows CDDA extraction and DiscID calculation without external tools.</li>
           <li>Added modern egui GUI and full Ratatui TUI (Terminal User Interface).</li>

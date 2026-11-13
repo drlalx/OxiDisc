@@ -533,14 +533,20 @@ impl CdReader {
         }
     }
 
+    /// Builds a GnuDB CDDB HTTP request URL embedding the package version.
+    fn gnudb_url(cmd: &str) -> String {
+        format!(
+            "http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd={}&hello=anonymous+localhost+oxidisc+{}&proto=6",
+            cmd,
+            env!("CARGO_PKG_VERSION")
+        )
+    }
+
     pub fn fetch_gnudb_metadata_with_toc(toc: &CdToc) -> Result<CdInfo, String> {
         let disc_id_hex = toc.cddb_disc_id_string();
         let query_params = toc.cddb_query_params();
 
-        let query_url = format!(
-            "http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd=cddb+query+{}&hello=anonymous+localhost+oxidisc+2.0.0&proto=6",
-            query_params
-        );
+        let query_url = Self::gnudb_url(&format!("cddb+query+{query_params}"));
 
         let agent = ureq::Agent::config_builder()
             .timeout_global(Some(Duration::from_secs(10)))
@@ -567,10 +573,10 @@ impl CdReader {
 
         let cddb_match = Self::parse_cddb_query_response(&query_body)?;
 
-        let read_url = format!(
-            "http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd=cddb+read+{}+{}&hello=anonymous+localhost+oxidisc+2.0.0&proto=6",
+        let read_url = Self::gnudb_url(&format!(
+            "cddb+read+{}+{}",
             cddb_match.category, cddb_match.disc_id
-        );
+        ));
 
         let mut read_resp = agent
             .get(&read_url)
@@ -860,5 +866,14 @@ mod tests {
         assert_eq!(cd_info.tracks[0], "So Far Away");
         assert_eq!(cd_info.tracks[1], "Money for Nothing");
         assert_eq!(cd_info.tracks[2], "Walk of Life");
+    }
+
+    #[test]
+    fn test_gnudb_url_uses_package_version() {
+        let query_url = CdReader::gnudb_url("cddb+query+a10c2e0c+3+150+1000+2000+30");
+        assert_eq!(
+            query_url,
+            "http://gnudb.gnudb.org/~cddb/cddb.cgi?cmd=cddb+query+a10c2e0c+3+150+1000+2000+30&hello=anonymous+localhost+oxidisc+0.1.0&proto=6"
+        );
     }
 }

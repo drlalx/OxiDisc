@@ -7,8 +7,8 @@ These notes describe how to prepare and publish OxiDisc release artifacts. Do no
 ## Preflight Checklist
 
 1. **Version Alignment**: Confirm the release version and tag match across all package recipes and `Cargo.toml`.
-   - Release version: `2.0.0`
-   - Upstream Git tag: `v2.0.0`
+   - Release version: `0.1.0`
+   - Upstream Git tag: `v0.1.0`
 2. **Clean Tree**: Confirm the working tree contains only intentional changes:
    ```bash
    git status --short --branch
@@ -31,14 +31,14 @@ GitHub Releases serves as the primary distribution hub for direct downloads and 
 
 1. **Create and Push the Git Tag**:
    ```bash
-   git tag -a v2.0.0 -m "OxiDisc 2.0.0"
-   git push origin v2.0.0
+   git tag -a v0.1.0 -m "OxiDisc 0.1.0"
+   git push origin v0.1.0
    ```
-2. **Draft GitHub Release**: Create release targeting `v2.0.0`.
+2. **Draft GitHub Release**: Create release targeting `v0.1.0`.
 3. **Upload Release Artifacts**:
-   - `target/appimage/oxidisc-2.0.0-x86_64.AppImage` (Linux Portable)
-   - `target/debian/oxidisc_2.0.0-1_amd64.deb` (Debian/Ubuntu)
-   - `target/release/oxidisc-2.0.0-windows-x86_64.zip` (Windows Portable containing `oxidisc.exe`)
+   - `target/appimage/oxidisc-0.1.0-x86_64.AppImage` (Linux Portable)
+   - `target/debian/oxidisc_0.1.0-1_amd64.deb` (Debian/Ubuntu)
+   - `target/release/oxidisc-0.1.0-windows-x86_64.zip` (Windows Portable containing `oxidisc.exe`)
 4. **Release Notes**: Detail new features (Opus encoder, AcoustID Chromaprint recognition, GnuDB provider cascade, Windows native CDDA extraction, upgraded egui UI), known requirements, and SHA-256 checksums.
 
 ---
@@ -53,8 +53,8 @@ The standalone Linux AppImage is produced locally:
    ```
 2. **Test**:
    ```bash
-   chmod +x target/appimage/oxidisc-2.0.0-x86_64.AppImage
-   ./target/appimage/oxidisc-2.0.0-x86_64.AppImage
+   chmod +x target/appimage/oxidisc-0.1.0-x86_64.AppImage
+   ./target/appimage/oxidisc-0.1.0-x86_64.AppImage
    ```
 3. **Publish**: Attach to the GitHub Release.
 
@@ -68,7 +68,7 @@ For Windows users:
    ```powershell
    cargo build --release --locked --no-default-features --features "egui-ui"
    ```
-2. **Bundle**: Create `target/release/oxidisc-2.0.0-windows-x86_64.zip` containing:
+2. **Bundle**: Create `target/release/oxidisc-0.1.0-windows-x86_64.zip` containing:
    - `oxidisc.exe`
    - `LICENSE`
    - `README.md`
@@ -87,7 +87,7 @@ Use Launchpad PPA for Ubuntu source packages.
    ```
 3. Upload to PPA using `dput`:
    ```bash
-   dput ppa:your-ppa/oxidisc ../oxidisc_2.0.0-1_source.changes
+   dput ppa:your-ppa/oxidisc ../oxidisc_0.1.0-1_source.changes
    ```
 4. Monitor Launchpad build status across target series.
 
@@ -95,7 +95,7 @@ Use Launchpad PPA for Ubuntu source packages.
 
 ## Arch Linux (AUR)
 
-1. Update `packaging/aur/PKGBUILD` with `pkgver=2.0.0`.
+1. Update `packaging/aur/PKGBUILD` with `pkgver=0.1.0`.
 2. Regenerate `.SRCINFO`:
    ```bash
    cd packaging/aur
@@ -134,8 +134,8 @@ Use Launchpad PPA for Ubuntu source packages.
    ```
 4. Bundle and test:
    ```bash
-   flatpak build-bundle target/flatpak-repo target/oxidisc-2.0.0-x86_64.flatpak io.github.dral.oxidisc
-   flatpak install --user target/oxidisc-2.0.0-x86_64.flatpak
+   flatpak build-bundle target/flatpak-repo target/oxidisc-0.1.0-x86_64.flatpak io.github.dral.oxidisc
+   flatpak install --user target/oxidisc-0.1.0-x86_64.flatpak
    ```
 
 ---

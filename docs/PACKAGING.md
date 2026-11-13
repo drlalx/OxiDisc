@@ -60,7 +60,7 @@ Build the standalone portable AppImage for x86_64 Linux:
 packaging/appimage/build-appimage.sh
 ```
 
-The resulting AppImage will be placed in `target/appimage/oxidisc-2.0.0-x86_64.AppImage`.
+The resulting AppImage will be placed in `target/appimage/oxidisc-0.1.0-x86_64.AppImage`.
 
 ### Arch Linux (AUR)
 
@@ -113,4 +113,4 @@ appstreamcli validate --pedantic resources/metainfo/io.github.dral.oxidisc.metai
 
 ## Upstream Release Anchor
 
-All distro recipes target the upstream Git release tag `v2.0.0`.
+All distro recipes target the upstream Git release tag `v0.1.0`.

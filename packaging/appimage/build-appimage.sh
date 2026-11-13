@@ -2,7 +2,7 @@
 set -eu
 
 APP=oxidisc
-VERSION=2.0.0
+VERSION=0.1.0
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
 APPDIR="$ROOT/target/appimage/${APP}.AppDir"
 

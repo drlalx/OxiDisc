@@ -1,6 +1,6 @@
-oxidisc (2.0.0-1) noble; urgency=medium
+oxidisc (0.1.0-1) noble; urgency=medium
 
-  * Major release 2.0.0.
+  * Release 0.1.0.
   * Rebranded to OxiDisc.
   * Added Ratatui TUI and modern egui GUI.
   * Added pure-Rust native Windows CDDA ripper and DiscID support.
